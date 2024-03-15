@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { getRandomUser } = require("./utils/factories/userFactory");
 
 const DATABASE_PATH = "mongodb://127.0.0.1:27017/mongoose";
 
@@ -26,11 +27,7 @@ async function insertUser(userData = {}) {
 async function run() {
   await mongoose.connect(DATABASE_PATH);
     console.log("Mongoose has connected to ", DATABASE_PATH);
-    await insertUser({
-        name: "Jonatan",
-        age: "26",
-        isTeacher: true
-    })
+    // await insertUser(getRandomUser());
   await mongoose.disconnect();
   console.log("Mongoose has disconnected from ", DATABASE_PATH);
 }
